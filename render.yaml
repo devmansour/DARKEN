@@ -1,0 +1,28 @@
+# Render blueprint. Secrets are asked for in the dashboard (sync: false), never stored here.
+services:
+  - type: web
+    name: darken
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: MONGO_URI
+        sync: false
+      - key: OWNER_NUMBER
+        sync: false
+      - key: SESSION_ID
+        value: darken
+      - key: DELOOP_REPO
+        sync: false
+      - key: DELOOP_TOKEN
+        sync: false
+      - key: DELOOP_BRANCH
+        value: main
+      - key: BOT_NAME
+        value: DARKEN
+      - key: TIMEZONE
+        value: Africa/Dar_es_Salaam

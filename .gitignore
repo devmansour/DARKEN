@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+!.env.example
+deloop/
+auth/
+session/
+creds.json
+*.log
