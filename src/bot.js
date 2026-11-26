@@ -68,6 +68,8 @@ async function startBot({ B, runtime, config, store, authColl, deloop, state: st
         const code = lastDisconnect && lastDisconnect.error && lastDisconnect.error.output && lastDisconnect.error.output.statusCode;
         const R = B.DisconnectReason || {};
         if (stopped) return;
+        const err = lastDisconnect && lastDisconnect.error;
+        log.warn(`[bot] disconnected: code=${code} message="${err && err.message}" reason="${err && err.data && (err.data.reason || err.data.content && JSON.stringify(err.data.content))}"`);
         if (code === R.loggedOut) {
           status.set('logged-out');
           log.error('[bot] Logged out from WhatsApp. Run the scanner again to create a new session.');
