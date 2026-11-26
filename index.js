@@ -37,6 +37,12 @@ async function main() {
   const authColl = db.collection('auth');
   log.info('[db] connected to MongoDB');
 
+  if (!runtime.sessionId) {
+    const latest = await authColl.findOne({ _id: '__latest' });
+    runtime.sessionId = (latest && latest.sessionId) || 'darken';
+    log.info(`[db] no SESSION_ID set, using the newest scanner session: ${runtime.sessionId}`);
+  }
+
   applySettings(config, await store.all('settings'));
 
   const deloop = new Deloop({ ...runtime.deloop, log });
