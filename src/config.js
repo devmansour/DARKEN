@@ -23,7 +23,7 @@ function fromEnv(env = process.env) {
     runtime: {
       mongoUri,
       mongoDb: env.MONGO_DB || 'darken',
-      sessionId: env.SESSION_ID || 'darken',
+      sessionId: env.SESSION_ID || '', // empty: the newest session the scanner saved is used
       port: Number(env.PORT) || 3000,
       selfUrl: env.RENDER_EXTERNAL_URL || env.SELF_URL || '',
       logLevel: env.LOG_LEVEL || 'silent',
